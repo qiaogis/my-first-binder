@@ -1,0 +1,12 @@
+%matplotlib inline
+
+import pandas
+
+data = pandas.read_csv('gapminder.csv', index_col='country')
+
+# Extract year from last 4 characters of each column name
+years = data.columns.str.strip('gdpPercap_')
+# Convert year values to integers, saving results back to dataframe
+data.columns = years.astype(int)
+
+data.loc['Australia'].plot()
